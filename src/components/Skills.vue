@@ -40,9 +40,14 @@ export default {
   },
   methods: {
     addSkill() {
-      this.skills.push({skill: this.skill})
-      this.skill = '';
-      console.log('checkbx value: ' + this.checked)
+      this.$validator.validateAll().then((result) => {
+        if(result) {
+          this.skills.push({skill: this.skill});
+          this.skill = '';
+        } else {
+          console.log('not valid');
+        }
+      })
     }
   }
 }
@@ -96,6 +101,13 @@ export default {
     color: #687f7f;
   }
 
+  .alert {
+    background: #fdf2ce;
+    font-weight: bold;
+    display: inline-block;
+    padding: 5px;
+    margin-top: -20px;
+  }
 
 </style>
  
