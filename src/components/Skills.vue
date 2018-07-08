@@ -3,8 +3,11 @@
     <div class="holder">
 
       <form @submit.prevent="addSkill">
-        <input type="text" placeholder="Enter a skill you have.." v-model="skill">
+        <input type="text" placeholder="Enter a skill you have.." v-model="skill" v-validate="'min:5'" name="skill">
+      
+        <p class="alert" v-if="errors.has('skill')">{{ errors.first('skill') }}</p>
       </form>
+
       <ul>
         <li v-for="(data, index) in skills" :key='index'>{{ data.skill}}</li>
       </ul>
@@ -39,6 +42,7 @@ export default {
     addSkill() {
       this.skills.push({skill: this.skill})
       this.skill = '';
+      console.log('checkbx value: ' + this.checked)
     }
   }
 }
@@ -46,7 +50,6 @@ export default {
 
 <style  scoped>
   .alert {
-    background-color: yellow;
     width: 100%;
     height: 30px;
   }
