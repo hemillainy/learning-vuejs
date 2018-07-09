@@ -11,7 +11,9 @@
       </form>
 
       <ul>
-        <li v-for="(data, index) in skills" :key='index'>{{ data.skill}}</li>
+        <li v-for="(data, index) in skills" :key='index'>{{data.skill}}
+          <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
+        </li>
       </ul>
 
       <p>These are the skills that you possess</p>
@@ -50,12 +52,17 @@ export default {
           console.log('not valid');
         }
       })
+    },
+    remove(id) {
+      this.skills.splice(id, 1);
     }
   }
 }
 </script>
 
 <style  scoped>
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; 
+
   .alert {
     width: 100%;
     height: 30px;
@@ -128,6 +135,10 @@ export default {
     100% {
       transform: scale(1);
     }
+  }
+
+  i {
+    float: right;
   }
 </style>
  
